@@ -1,0 +1,58 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Node",
+"class": "MmodotConfig",
+"language": "GDScript",
+"path": "res://vendor/Mmodot/Config/MmodotConfig.gd"
+}, {
+"base": "Spatial",
+"class": "MmodotInstance",
+"language": "GDScript",
+"path": "res://vendor/Mmodot/Instance/MmodotInstance.gd"
+}, {
+"base": "Node",
+"class": "MmodotInstanceManager",
+"language": "GDScript",
+"path": "res://vendor/Mmodot/Instance/Manager/MmodotInstanceManager.gd"
+}, {
+"base": "Node",
+"class": "MmodotUi",
+"language": "GDScript",
+"path": "res://vendor/Mmodot/Ui/MmodotUi.gd"
+}, {
+"base": "Spatial",
+"class": "MmodotWorldServer",
+"language": "GDScript",
+"path": "res://vendor/Mmodot/World/Server/MmodotWorldServer.gd"
+}, {
+"base": "Spatial",
+"class": "MmodotZone",
+"language": "GDScript",
+"path": "res://vendor/Mmodot/Zone/MmodotZone.gd"
+} ]
+_global_script_class_icons={
+"MmodotConfig": "",
+"MmodotInstance": "",
+"MmodotInstanceManager": "",
+"MmodotUi": "",
+"MmodotWorldServer": "",
+"MmodotZone": ""
+}
+
+[application]
+
+config/name="Mmodot"
+config/icon="res://icon.png"
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"
