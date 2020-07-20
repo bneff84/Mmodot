@@ -10,6 +10,21 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Node",
+"class": "MmodotApiAuthenticationClient",
+"language": "GDScript",
+"path": "res://vendor/Mmodot/Api/Authentication/Client/MmodotApiAuthenticationClient.gd"
+}, {
+"base": "Node",
+"class": "MmodotApiAuthenticationObject",
+"language": "GDScript",
+"path": "res://vendor/Mmodot/Api/Authentication/Object/MmodotApiAuthenticationObject.gd"
+}, {
+"base": "MmodotApiAuthenticationObject",
+"class": "MmodotAuthenticationObject",
+"language": "GDScript",
+"path": "res://vendor/Mmodot/Authentication/Object/MmodotAuthenticationObject.gd"
+}, {
+"base": "Node",
 "class": "MmodotConfig",
 "language": "GDScript",
 "path": "res://vendor/Mmodot/Config/MmodotConfig.gd"
@@ -24,11 +39,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://vendor/Mmodot/Instance/Manager/MmodotInstanceManager.gd"
 }, {
-"base": "Node",
-"class": "MmodotUi",
-"language": "GDScript",
-"path": "res://vendor/Mmodot/Ui/MmodotUi.gd"
-}, {
 "base": "Spatial",
 "class": "MmodotWorldServer",
 "language": "GDScript",
@@ -40,10 +50,12 @@ _global_script_classes=[ {
 "path": "res://vendor/Mmodot/Zone/MmodotZone.gd"
 } ]
 _global_script_class_icons={
+"MmodotApiAuthenticationClient": "",
+"MmodotApiAuthenticationObject": "",
+"MmodotAuthenticationObject": "",
 "MmodotConfig": "",
 "MmodotInstance": "",
 "MmodotInstanceManager": "",
-"MmodotUi": "",
 "MmodotWorldServer": "",
 "MmodotZone": ""
 }

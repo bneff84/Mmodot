@@ -24,11 +24,14 @@ func _listen() -> void:
 	print("This is not a durable authentication server and is not meant for production use. This is only meant to illustrate the concept of a login server.")
 
 func _on_client_connected(id, proto) -> void:
-	print("Client %d connected with protocol %s" % [id,proto])
+	print("Client %d connected with protocol %s" % [id, proto])
 
 func _on_client_disconnected(id, was_clean = false) -> void:
 	print("Client %d disconnected" % [id])
 
-func _on_data_received(id) -> void:
+func _on_data_received(id: int) -> void:
 	var data = _server.get_peer(id).get_packet().get_string_from_utf8()
 	print("Got data for peer %d: %s" % [id, data])
+	var response = JSON.print({"token": str(id)})
+	print("Sending response %s to peer %d" % [response, id])
+	_server.get_peer(id).put_packet(response.to_utf8())
