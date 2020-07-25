@@ -1,40 +1,24 @@
 extends Node
 
-var config: MmodotConfig = Mmodot.get_singleton('MmodotConfig')
-var network: MmodotNetworking = Mmodot.get_singleton('MmodotNetworking')
+var _auth_client: MmodotAuthenticationClientWebsocket = MmodotAuthenticationClientWebsocket.new()
+var _auth_object: MmodotApiAuthenticationObject
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	_connect_signals()
-	_load_configuration()
-	_start_client()
-	pass # Replace with function body.
-	
-func _connect_signals():
-	get_tree().connect('connected_to_server', self, '_connected_to_server')
-	get_tree().connect('connection_failed', self, '_connection_failed')
-	get_tree().connect("network_peer_connected", self, '_network_peer_connected')
-	get_tree().connect("network_peer_disconnected", self, '_network_peer_disconnected')
-	
-func _connected_to_server():
-	print('_connected_to_server')
-	
-func _connection_failed():
-	print('_connection_failed')
-	
-func _network_peer_connected():
-	print('_network_peer_connected')
-	
-func _network_peer_disconnected():
-	print('_network_peer_disconnected')
-	
-func _load_configuration():
-	config.debug = true
-	config.load_config('res://config.ini', 'res://config.defaults.ini')
+	_auth_client.connect("auth_failure", self, "_on_auth_failure")
+	_auth_client.connect("auth_success", self, "_on_auth_success")
+	_auth_client.set_authentication_data({
+		'username': 'foo',
+		'password': 'bar'
+	})
+	_auth_client.authenticate()
+	#put this in the scene so it can run properly
+	add_child(_auth_client)
+	pass
 
-func _start_client():
-	network.debug = true
-	var port: int = config.get_value('network', 'port', 11337)
-	var host: String = config.get_value('network', 'host', 'localhost')
-	network.create_client(host, port)
-	get_tree().set_network_peer(network.get_network())
+func _on_auth_failure(client: MmodotAuthenticationClientWebsocket) -> void:
+	print("Auth failure!")
+
+func _on_auth_success(client: MmodotAuthenticationClientWebsocket) -> void:
+	print("Auth successful!")
+	print(client.get_authentication_object().get_token())
+	_auth_object = client.get_authentication_object()

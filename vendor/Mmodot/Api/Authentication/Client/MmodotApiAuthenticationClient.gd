@@ -2,16 +2,25 @@
 # This is an API Class (Abstract/Header/etc)   #
 # and should not be used directly              #
 ################################################
+# TODO: Make a service API for response/failure instead of emitting this class in the signals
 extends Node
 
 class_name MmodotApiAuthenticationClient
 
+# Emitted when authentication succeeded after a call to authenticate()
+# Should pass itself (MmodotApiAuthenticationClient) as the only parameter
+signal auth_success(client)
+
+# Emitted when authentication fails after a call to authenticate()
+# Should pass itself (MmodotApiAuthenticationClient) as the only parameter
+signal auth_failure(client)
+
 # Make the authentication request against the authentication server and create
 # an MmodotApiAuthenticationObject to contain the authentication data if the
 # request was successful.
-func authenticate() -> bool:
+# Should emit one of the auth_success or auth_failure signals upon completion.
+func authenticate() -> void:
 	assert(false, "This is an API class and should not be used directly.")
-	return false
 
 # Set the data to be used to authenticate this request against the
 # authentication server. This does not need to validate the data as it is set.

@@ -19,10 +19,20 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://vendor/Mmodot/Api/Authentication/Object/MmodotApiAuthenticationObject.gd"
 }, {
+"base": "MmodotApiAuthenticationClient",
+"class": "MmodotAuthenticationClientWebsocket",
+"language": "GDScript",
+"path": "res://vendor/Mmodot/Authentication/Client/Websocket/MmodotAuthenticationClientWebsocket.gd"
+}, {
 "base": "MmodotApiAuthenticationObject",
 "class": "MmodotAuthenticationObject",
 "language": "GDScript",
 "path": "res://vendor/Mmodot/Authentication/Object/MmodotAuthenticationObject.gd"
+}, {
+"base": "Node",
+"class": "MmodotAuthenticationServerWebsocket",
+"language": "GDScript",
+"path": "res://vendor/Mmodot/Authentication/Server/Websocket/MmodotAuthenticationServerWebsocket.gd"
 }, {
 "base": "Node",
 "class": "MmodotConfig",
@@ -52,7 +62,9 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "MmodotApiAuthenticationClient": "",
 "MmodotApiAuthenticationObject": "",
+"MmodotAuthenticationClientWebsocket": "",
 "MmodotAuthenticationObject": "",
+"MmodotAuthenticationServerWebsocket": "",
 "MmodotConfig": "",
 "MmodotInstance": "",
 "MmodotInstanceManager": "",
