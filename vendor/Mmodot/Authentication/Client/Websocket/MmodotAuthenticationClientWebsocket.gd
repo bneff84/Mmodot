@@ -1,3 +1,4 @@
+# TODO: Cleanup all the unused signal listeners and see what should move into the service API
 extends MmodotApiAuthenticationClient
 
 class_name MmodotAuthenticationClientWebsocket
@@ -51,22 +52,9 @@ func _auth_success() -> void:
 func _connect_signals() -> void:
 	print("Signals connected")
 	_client.connect("data_received", self, "_on_data_received")
-	_client.connect("connection_error", self, "_on_connection_closed")
-	_client.connect("connection_failed", self, "_on_connection_closed")
+	_client.connect("connection_error", self, "_auth_fail")
 	_client.connect("connection_established", self, "_on_connection_established")
-	_client.connect("connection_succeeded", self, "_on_connection_succeeded")
-	_client.connect("peer_connected", self, "_on_peer_connected")
-	_client.connect("connection_closed", self, "_on_connection_closed")
 	pass
-
-func _on_connection_closed(was_Clean: bool = false) -> void:
-	print("_on_connection_closed")
-
-func _on_peer_connected() -> void:
-	print("_on_peer_connected")
-
-func _on_connection_succeeded() -> void:
-	print("_on_connection_succeeded")
 
 func _on_connection_established(proto: String) -> void:
 	print("_on_connection_established with protocol %s" % [proto])
